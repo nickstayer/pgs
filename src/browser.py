@@ -18,6 +18,7 @@ class Browser:
         chrome_options.add_argument('--disable-notifications')
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+        # chrome_options.add_argument('--headless')
         service = ChromeService(executable_path='chromedriver.exe')
         self.driver = webdriver.Chrome(service=service, options=chrome_options)

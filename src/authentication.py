@@ -45,6 +45,9 @@ def get_search_page(browser):
 
         elif pages.ImgCodePage(browser).here:
             img_code_page = pages.ImgCodePage(browser)
-            input(f'{img_code_page}. Введите код и нажмите Enter')
+            img_code_page.download_and_open_image()
+            img_code = input(f'{img_code_page}. Введите код и нажмите Enter')
+            img_code_page.type_img_code(img_code)
+            img_code_page.button_click()
 
     raise 'Страница не определена'

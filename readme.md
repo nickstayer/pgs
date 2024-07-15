@@ -1,4 +1,4 @@
-для решения проблемы "Опаньки" Out of memory, предлагается добавить опции:
+РґР»СЏ СЂРµС€РµРЅРёСЏ РїСЂРѕР±Р»РµРјС‹ "РћРїР°РЅСЊРєРё" Out of memory, РїСЂРµРґР»Р°РіР°РµС‚СЃСЏ РґРѕР±Р°РІРёС‚СЊ РѕРїС†РёРё:
 
 	options.add_argument("--disable-dev-shm-usage")
 	options.add_argument("--disable-blink-features=AutomationControlled")
@@ -6,6 +6,6 @@
 	options.add_argument("--disable-infobars")
 	options.add_argument("--disable-extensions")
 
-а также очщать куки перед в конце каждой итерации:
+Р° С‚Р°РєР¶Рµ РѕС‡РёС‰Р°С‚СЊ РєСѓРєРё РїРµСЂРµРґ РІ РєРѕРЅС†Рµ РєР°Р¶РґРѕР№ РёС‚РµСЂР°С†РёРё:
 
 	browser.delete_all_cookies()

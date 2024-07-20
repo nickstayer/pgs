@@ -25,7 +25,8 @@ class ImgCodePage(BasePage):
 
     @property
     def img(self):
-        return self.find(img_locator)
+        result = self.find(img_locator)
+        return result
 
     @property
     def input(self):

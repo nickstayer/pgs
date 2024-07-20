@@ -4,6 +4,7 @@ WAIT_5 = 10
 WAIT_3 = 3
 WAIT_1 = 1
 START_PAGE = 'https://pgs2.gosuslugi.ru/microws'
+TEST_PAGE = 'https://www.google.ru/webhp?tab=ow'
 HEADERS = (
     'Номер заявления',
     'Цель обращения',

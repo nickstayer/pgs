@@ -19,7 +19,7 @@ def main():
     logger.info(f'Подготавливаю файл {file_in}')
     statement_id_list = read_stat_id(file_in)
     logger.info(f'Запускаю браузер')
-    browser.start()
+    browser.start_chrome()
     logger.info(f'Подключаюсь к {START_PAGE}')
     browser.driver.get(START_PAGE)
     search_page = get_search_page(browser)
@@ -27,9 +27,14 @@ def main():
     search_page.close_alert()
     logger.info('Начинаю работу со списком заявлений')
 
+    counter = 0
     for statement_id in statement_id_list:
         if is_null_or_empty(statement_id):
             continue
+        counter += 1
+        if counter % 150 == 0:
+            browser.driver.quit()
+            browser.start_chrome()
         logger.info(f'Работаю с ид: {statement_id}')
         stat_page = search_page.open_statement(statement_id)
         if stat_page:
@@ -39,8 +44,8 @@ def main():
             statement.write_body(file_out)
             logger.info(f'Информация записана в файл')
             stat_page.go_back_to_statements()
+        browser.driver.delete_all_cookies()
         search_page = get_search_page(browser)
-
     logger.info(f'Получены данные заявлений в количестве: {len(statement_id_list)}')
     input(f'Работа программы завершена.\r\n'
           f'Результат в файле {file_out}.\r\n'

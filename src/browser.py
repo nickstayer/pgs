@@ -32,6 +32,7 @@ class Browser:
 
     def start_firefox(self):
         ff_options = OptionsFirefox()
+        ff_options.binary_location = "C:/Program Files/Mozilla Firefox/firefox.exe"
         ff_options.add_argument("--disable-dev-shm-usage")
         ff_options.add_argument("--disable-blink-features=AutomationControlled")
         ff_options.add_argument("--disable-gpu")
@@ -40,8 +41,6 @@ class Browser:
         ff_options.add_argument('--log-level=3')
         ff_options.add_argument('--disable-logging')
         ff_options.add_argument('--disable-notifications')
-        ff_options.add_argument('--disable-dev-shm-usage')
-        ff_options.add_argument('--disable-blink-features=AutomationControlled')
-        ff_options.add_argument('--headless')
+        # ff_options.add_argument('--headless')
         service_ff = FirefoxService(executable_path='geckodriver.exe')
         self.driver = webdriver.Firefox(service=service_ff, options=ff_options)

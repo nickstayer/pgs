@@ -8,3 +8,5 @@ src/__pycache__/
 src/*.log
 src/*.csv
 src/*.exe
+packages/
+build/

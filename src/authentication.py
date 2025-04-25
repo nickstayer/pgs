@@ -1,4 +1,3 @@
-
 import src.pages as pages
 from src.consts import *
 
@@ -43,11 +42,11 @@ def get_search_page(browser):
             phone_code = input('Введите код из смс: ')
             phone_code_page.type_phone_code(phone_code)
 
-        elif pages.ImgCodePage(browser).here:
-            img_code_page = pages.ImgCodePage(browser)
-            img_code_page.download_and_open_image()
-            img_code = input(f'{img_code_page}. Введите код и нажмите Enter')
-            img_code_page.type_img_code(img_code)
-            img_code_page.button_click()
+        # elif pages.ImgCodePage(browser).here:
+        #     img_code_page = pages.ImgCodePage(browser)
+        #     img_code_page.download_and_open_image()
+        #     img_code = input(f'{img_code_page}. Введите код и нажмите Enter')
+        #     img_code_page.type_img_code(img_code)
+        #     img_code_page.button_click()
 
     raise 'Страница не определена'

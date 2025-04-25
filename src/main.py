@@ -3,7 +3,6 @@ from src.authentication import get_search_page
 from src.statement import *
 from src.browser import Browser
 from src.logger import Logger
-import gc
 
 file_in = "statements_list.csv"
 file_out = "result.csv"
@@ -12,7 +11,6 @@ login = input('Логин: ').strip()
 password = input('Пароль: ').strip()
 secret = (login, password)
 browser = Browser(logger, secret)
-
 
 def main():
     logger.info(f'Подготавливаю файл {file_out}')
@@ -34,12 +32,6 @@ def main():
             continue
         counter += 1
 
-        # todo: test 2
-        # if counter % 150 == 0:
-        #     logger.info(f'Перезапускаю браузер')
-        #     browser.driver.quit()
-        #     browser.start_chrome()
-
         logger.info(f'Работаю с ид: {statement_id}')
         stat_page = search_page.open_statement(statement_id)
         if stat_page:
@@ -50,9 +42,6 @@ def main():
             logger.info(f'Информация записана в файл')
             stat_page.go_back_to_statements()
         browser.driver.delete_all_cookies()
-
-        # todo: test 1
-        gc.collect()
         
         search_page = get_search_page(browser)
     logger.info(f'Получены данные заявлений в количестве: {len(statement_id_list)}')

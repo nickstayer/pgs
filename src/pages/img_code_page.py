@@ -2,9 +2,9 @@ from src.pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-import requests
-from PIL import Image
-from io import BytesIO
+# import requests
+# from PIL import Image
+# from io import BytesIO
 
 page_marker_locator = (By.XPATH, '//*[contains(text(), "Введите код с картинки")]')
 img_locator = (By.XPATH, '//img')
@@ -36,15 +36,15 @@ class ImgCodePage(BasePage):
     def get_img_url(self):
         return self.img.get_attribute('src')
 
-    def download_and_open_image(self):
-        url = self.get_img_url()
-        response = requests.get(url)
-        if response.status_code == 200:
-            img_data = response.content
-            img = Image.open(BytesIO(img_data))
-            img.show()
-        else:
-            self.browser.logger("Failed to retrieve the image. Status code:", response.status_code)
+    # def download_and_open_image(self):
+    #     url = self.get_img_url()
+    #     response = requests.get(url)
+    #     if response.status_code == 200:
+    #         img_data = response.content
+    #         img = Image.open(BytesIO(img_data))
+    #         img.show()
+    #     else:
+    #         self.browser.logger("Failed to retrieve the image. Status code:", response.status_code)
 
     @property
     def button(self):

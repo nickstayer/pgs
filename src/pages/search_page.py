@@ -6,9 +6,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from src.consts import *
 
-stay_button_locator = (By.XPATH, '//span[contains(text(),"Остаться")]')
+# stay_button_locator = (By.XPATH, '//span[contains(text(),"Остаться")]')
 input_search_locator = (By.XPATH, '//input[contains(@placeholder, "Номер")]')
-statement_link_locator = (By.XPATH, '//*[contains(@class, "q-chip--clickable")]')
+statement_link_locator = (By.XPATH, '//a[contains(@class, "order-id")]')
 no_data_locator = (By.XPATH, '//*[contains(text(),"Нет данных")]')
 
 
@@ -24,43 +24,47 @@ class SearchPage(BasePage):
         return self.wait_and_find(input_search_locator)
 
     def get_statement_link(self, stat_id):
-        locator = (By.XPATH, f'//*[contains(text(), "{stat_id}")]/parent::div')
-        return self.wait_and_find(locator, WAIT_3)
+        # locator = (By.XPATH, f'//*[contains(text(), "{stat_id}")]/parent::div')
+        return self.wait_and_find(statement_link_locator, 3)
 
     @property
     def input_search(self):
-        return self.wait_and_find(input_search_locator, WAIT_3)
+        return self.wait_and_find(input_search_locator, 3)
 
     def open_statement(self, statement_id):
         counter = 0
 
-        while counter < WAIT_5:
+        while counter < 5:
             self.input_search.click()
             self.input_search.send_keys(Keys.CONTROL + "a")
             self.input_search.send_keys(Keys.DELETE)
             self.input_search.send_keys(statement_id)
-            if self.input_search.get_attribute('value') == statement_id:
+            if self.input_search.get_attribute("value") == statement_id:
                 break
             else:
                 counter += 1
                 time.sleep(1)
 
-        if self.input_search.get_attribute('value') == statement_id:
+        if self.input_search.get_attribute("value") == statement_id:
             self.input_search.send_keys(Keys.RETURN)
-            if self.wait_and_find(no_data_locator, WAIT_3):
-                self.browser.logger.error(f'Не удалось получить данные. '
-                                          f'Искал: {statement_id}.Ввод: {self.input_search.get_attribute('value')}')
+            if self.wait_and_find(no_data_locator, 3):
+                # self.browser.logger.error(f'Не удалось получить данные. Искал: {statement_id}.Ввод: {self.input_search.get_attribute('value')}')
+                self.browser.logger.error(
+                    f"Не удалось получить данные. Искал: {statement_id}"
+                )
                 return None
             statement_link = self.get_statement_link(statement_id)
             if statement_link:
                 statement_link.click()
                 return StatPage(self.browser)
         else:
-            self.browser.logger.error(f'Не удалось получить данные. '
-                                      f'Искал: {statement_id}.Ввод: {self.input_search.get_attribute('value')}')
+            # self.browser.logger.error(f'Не удалось получить данные. Искал: {statement_id}.Ввод: {self.input_search.get_attribute('value')}')
+            self.browser.logger.error(
+                f"Не удалось получить данные. Искал: {statement_id}"
+            )
             return None
 
-    def close_alert(self):
-        stay_button = self.wait_and_find(stay_button_locator, WAIT_60)
-        if stay_button:
-            stay_button.click()
+    # def close_alert(self):
+    #     stay_button = self.wait_and_find(stay_button_locator, WAIT_60)
+    #     if stay_button:
+    #         stay_button.click()

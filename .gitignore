@@ -5,8 +5,8 @@ data/
 dist/
 *.patch
 src/__pycache__/
-src/*.log
-src/*.csv
-src/*.exe
+*.log
+*.csv
+*.exe
 packages/
 build/

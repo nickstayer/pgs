@@ -23,8 +23,8 @@ def main():
     logger.info(f"Подключаюсь к {START_PAGE}")
     browser.driver.get(START_PAGE)
     search_page = get_search_page(browser)
-    logger.info("Ожидаю окно с предложением перейти на новый интерфейс")
-    # search_page.close_alert()
+    # logger.info("Ожидаю окно с предложением перейти на новый интерфейс")
+    # # search_page.close_alert()
     logger.info("Начинаю работу со списком заявлений")
 
     counter = 0

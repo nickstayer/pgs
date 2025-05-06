@@ -6,7 +6,7 @@ from src.consts import *
 from src.statement import Statement
 
 back_locator = (By.XPATH, '//i[contains(@class,"pgs-icon pgs-arrow-left")]')
-stat_id_locator = (By.XPATH, '//span[contains(text(),"Заявление")]')
+stat_id_locator = (By.XPATH, '//span[contains(text(),"Заявление")]/following-sibling::span')
 first_tab_locator = (By.XPATH, '//div[contains(text(),"Общая информация")]')
 target_locator = (
     By.XPATH,
